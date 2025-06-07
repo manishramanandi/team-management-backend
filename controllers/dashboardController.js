@@ -15,7 +15,7 @@ const getDashboardSummary = async (req, res) => {
       },
       stats: {
         teamMembers: {
-          count: Math.floor(Math.random() * 15 + 5,) // 5-20 members
+          count: Math.floor(Math.random() * 15 + 5,), // 5-20 members
           recent: [
             {name: 'Manish', role:'Backend dev', status: 'online'},
             {name: 'Rohit', role:'frontend dev', status: 'away'},
@@ -107,7 +107,7 @@ const getDashboardSummary = async (req, res) => {
       message: 'server error while fatching dashbaord data'
     });
     }
-},
+}
 
   // recent activity
   const getRecentActivity = async (req, res) => {
@@ -166,7 +166,7 @@ const getDashboardSummary = async (req, res) => {
   }
   };
 
-module.export = {
+module.exports = {
   getDashboardSummary,
   getRecentActivity
 };

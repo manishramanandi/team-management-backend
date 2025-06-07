@@ -1,10 +1,10 @@
-const User = require('../middleware/User');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 // Generate token
 
 const generateToken = (userId) => {
-  return jwt.sign({ userId}), process.env.JWT_SECRET, {
+  return jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: '7d'
   });
 };
@@ -13,16 +13,15 @@ const generateToken = (userId) => {
 
 const registerUser = async (req, res) => {
   try {
-    const {name, email, passwprd } = req.bosy;
-
+    const { name, email, password } = req.body;
     // if valid
-    if (!name) || !email || !password) {
+    if (!name || !email || !password) {
       return res.status(400).json({
         success: false,
         message: 'please provide name, email and password',
       });
     }
-
+    
 // check user exist or not 
 const existingUser = await User.findOne({ email });
 if (existingUser) {
@@ -59,7 +58,7 @@ res.status(201).json({
 
 
   } catch (error) {
-    console.console.error('Register error: ',error);
+    console.error('Register error:', error);
 
     // validation errors
     if (error.name === 'ValidationError') {
@@ -104,7 +103,7 @@ const loginUser = async (req, res) => {
     if(!user || !user.isActive) {
       return res.status(401).json ({
         success: false,
-        message: 'Invalid email or passwprd'
+        message: 'Invalid email or password'
       });
     }
     
@@ -112,7 +111,7 @@ const loginUser = async (req, res) => {
     const isPasswordMatch = await user.comparePassword(passwprd);
     if (!isPasswordMatch)  {
       return res.status(401).json({
-        successL false,
+        success: false,
         message: 'Invalid email or password'
       });
     }
@@ -145,7 +144,6 @@ const loginUser = async (req, res) => {
 
 };
 
-
 const getUserProfile = async (req, res) => {
   try {
     const user = req.user; 
@@ -175,26 +173,8 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-module.export = {
+module.exports = {
   registerUser,
   loginUser,
-  getUserProfile
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:
+  getUserProfile,
+};

@@ -2,7 +2,7 @@ const Preferences = require('../models/Preferences.js');
 
 // user Preferences
 
-const getUserPreference = async (req, res) => {
+const getUserPreferences = async (req, res) => {
   try {
     const userId = req.user._id;
 
@@ -176,30 +176,7 @@ const resetUserPreferences = async (req, res) => {
 
 
 module.exports = {
-  getUserPreference,
+  getUserPreferences,
   updateUserPreferences,
   resetUserPreferences
 };
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth.js'));
 app.use('/api/preferences', require('./routes/preferences.js'));
 app.use('api/dashboard', require('./routes/dashboard.js'));
 // Error handling mid
@@ -46,29 +46,4 @@ app.use('*', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
