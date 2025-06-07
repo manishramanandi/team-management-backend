@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', require('./routes/auth'));
-
+app.use('/api/preferences', require('./routes/preferences.js'));
 
 // Error handling mid
 
