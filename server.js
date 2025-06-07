@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/preferences', require('./routes/preferences.js'));
-
+app.use('api/dashboard', require('./routes/dashboard.js'));
 // Error handling mid
 
 app.use((err, req, res, next) => {
